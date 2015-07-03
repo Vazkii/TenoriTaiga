@@ -4,5 +4,5 @@
 	define('HEADER_COLOR', '#FF9800');
 
 	// Function
-	define('ANIME_ROOT', '/media');
+	define('ANIME_ROOT', './media');
 ?>

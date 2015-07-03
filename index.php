@@ -35,7 +35,38 @@
 		</div>
 		
 		<div class="container page-contents">
-			
+			<?php
+				$files = scandir(ANIME_ROOT);
+				foreach($files as $file) {
+					if(strlen(str_replace('.', '', $file)) == 0)
+						continue;
+
+					$info = getAnimeInfo($file);
+					if($info !== null) {
+						echo '<div class="anime-box">';
+
+						$anime = $info[0];
+
+						$genres = $anime['genres'];
+						$genres_str = '';
+						foreach($genres as $genre)
+							$genres_str .= $genre['name'] . ', ';
+						$genres_str = substr($genres_str, 0, strlen($genres_str) - 2);
+
+						echo " - Name: <b>" . $anime['title'] . '</b><br>';
+						echo " - Episodes: <b>" . $anime['episode_count'] . '</b><br>';
+						echo " - Genre: <b>" . $genres_str . '</b><br>';
+
+						echo('</div>');
+					}
+				}
+
+				function getAnimeInfo($anime_name) {
+					$api = 'http://hummingbird.me/api/v1/search/anime/?query=' . urlencode($anime_name);
+					$contents = file_get_contents($api);
+					return json_decode($contents, true);
+				}
+			?>
 		</div>
 		
 		<footer class="footer">

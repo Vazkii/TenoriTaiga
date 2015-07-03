@@ -16,3 +16,13 @@ footer {
 	margin-top: 80px;
 	margin-bottom: 20px;
 }
+
+.anime-box {
+	background-color: #FFFFFF;
+	width: 300px;
+	height: 400px;
+	margin: 5px 5px 5px 5px;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	display: inline-block;
+	vertical-align: top;
+}
