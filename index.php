@@ -53,11 +53,16 @@
 							$genres_str .= $genre['name'] . ', ';
 						$genres_str = substr($genres_str, 0, strlen($genres_str) - 2);
 
-						echo " - Name: <b>" . $anime['title'] . '</b><br>';
-						echo " - Episodes: <b>" . $anime['episode_count'] . '</b><br>';
-						echo " - Genre: <b>" . $genres_str . '</b><br>';
+						echo '<div class="anime-image"><img src="' . $anime['cover_image'] . '"></div>';
+						echo '<div class="anime-info">';
+						echo '<div class="anime-name">' . $anime['title'] . '</div>';
 
-						echo('</div>');
+
+						//echo " - Episodes: <b>" . $anime['episode_count'] . '</b><br>';
+						//echo " - Genre: <b>" . $genres_str . '</b><br>';
+
+						//echo('<a href="javascript:void(0)" class="btn btn-material-deep-orange-500 btn-fab"></a>');
+						echo('</div></div>');
 					}
 				}
 
