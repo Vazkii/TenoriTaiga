@@ -41,12 +41,20 @@ footer {
 .anime-info {
 	position: relative;
 	z-index: 1;
-	width: calc(100% - 8px);
-	margin: -351px 0px 0px 4px;
+	width: calc(100% - 18px);
+	margin: -351px 0px 0px 10px;
 }
 
 .anime-name {
 	font-size: 20px;
 	color: #FFFFFF;
 	text-shadow: 1px 2px black;
+}
+
+.anime-play-button {
+	position: absolute;
+	z-index: 2;
+	height: 0px;
+	margin-top: 290px;
+	margin-left: 216px;
 }

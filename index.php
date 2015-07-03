@@ -41,9 +41,10 @@
 					if(strlen(str_replace('.', '', $file)) == 0)
 						continue;
 
-					$info = getAnimeInfo($file);
+					$info = get_anime_info($file);
 					if($info !== null) {
 						echo '<div class="anime-box">';
+						echo('<div class="anime-play-button"><a href="javascript:void(0)" class="btn btn-material-deep-orange-500 btn-fab btn-raised mdi-av-play-arrow"></a></div>');
 
 						$anime = $info[0];
 
@@ -57,19 +58,29 @@
 						echo '<div class="anime-info">';
 						echo '<div class="anime-name">' . $anime['title'] . '</div>';
 
-
-						//echo " - Episodes: <b>" . $anime['episode_count'] . '</b><br>';
-						//echo " - Genre: <b>" . $genres_str . '</b><br>';
-
-						//echo('<a href="javascript:void(0)" class="btn btn-material-deep-orange-500 btn-fab"></a>');
 						echo('</div></div>');
 					}
 				}
 
-				function getAnimeInfo($anime_name) {
-					$api = 'http://hummingbird.me/api/v1/search/anime/?query=' . urlencode($anime_name);
-					$contents = file_get_contents($api);
+				function get_anime_info($anime_name) {
+					if(USE_CACHE && has_cache_for($anime_name))
+						$contents = file_get_contents(get_cache_file($anime_name));
+					else {
+						$api = 'http://hummingbird.me/api/v1/search/anime/?query=' . urlencode($anime_name);
+						$contents = file_get_contents($api);
+						file_put_contents(get_cache_file($anime_name), $contents);
+					}
+					
 					return json_decode($contents, true);
+				}
+
+				function get_cache_file($anime_name) {
+					return CACHE_ROOT . "/$anime_name.json";
+				}
+
+				function has_cache_for($anime_name) {
+					$file = get_cache_file($anime_name);
+					return file_exists($file) && filemtime($file) - time() < CACHE_REFRESH_TIME;
 				}
 			?>
 		</div>
