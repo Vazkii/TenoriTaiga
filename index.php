@@ -68,7 +68,8 @@
 					else {
 						$api = 'http://hummingbird.me/api/v1/search/anime/?query=' . urlencode($anime_name);
 						$contents = file_get_contents($api);
-						file_put_contents(get_cache_file($anime_name), $contents);
+						if(USE_CACHE)
+							file_put_contents(get_cache_file($anime_name), $contents);
 					}
 					
 					return json_decode($contents, true);
