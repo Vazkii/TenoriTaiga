@@ -1,12 +1,20 @@
+<?php require 'config.php' ?>
+
 <!DOCTYPE html>
 <html>
-	<title>Tenori Taiga</title>	
+	<title><?php echo TITLE ?></title>	
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="css/ripples.min.css">
 		<link rel="stylesheet" href="css/material-wfont.min.css">
 		<link rel="stylesheet" href="css/taiga.css">
+
+		<style type="text/css">
+			.navbar-inverse {
+				background-color: <?php echo HEADER_COLOR; ?>;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -20,19 +28,14 @@
 				<span class="icon-bar"></span>
 			  </button>
 			  <a class="navbar-brand" href="#">
-				Tenori Taiga
+				<?php echo TITLE ?>
 			  </a>
 			</div>
 		  </div>
 		</div>
 		
 		<div class="container page-contents">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			
 		</div>
 		
 		<footer class="footer">
