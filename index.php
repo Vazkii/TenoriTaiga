@@ -6,12 +6,12 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="css/ripples.min.css">
-		<link rel="stylesheet" href="css/material-wfont.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.css">
 		<link rel="stylesheet" href="css/taiga.css">
 
 		<style type="text/css">
-			.navbar-inverse {
+			.navbar-inverse.navbar {
 				background-color: <?php echo HEADER_COLOR; ?>;
 			}
 		</style>
@@ -82,8 +82,8 @@
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="js/ripples.min.js"></script>
-		<script src="js/material.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
 		<script src="js/taiga.js"></script>
 	</body>
 </html>
