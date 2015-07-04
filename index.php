@@ -1,4 +1,4 @@
-<?php require 'config.php' ?>
+﻿<?php require 'config.php' ?>
 
 <!DOCTYPE html>
 <html>
@@ -48,15 +48,31 @@
 
 						$anime = $info[0];
 
+						$cover_image = $anime['cover_image'];
+						$title = $anime['title'];
+						$age_rating = $anime['age_rating'];
+						$status = $anime['status'];
+						$episodes = $anime['episode_count'];
+						$ep_length = $anime['episode_length'];
+						$full_length = $episodes * $ep_length;
+						$hours = (int) ($full_length / 60);
+						$mins = $full_length % 60;
+						$mins_str = "$mins";
+						if(strlen($mins_str) < 2)
+							$mins_str = "0$mins_str";
+
 						$genres = $anime['genres'];
 						$genres_str = '';
 						foreach($genres as $genre)
 							$genres_str .= $genre['name'] . ', ';
 						$genres_str = substr($genres_str, 0, strlen($genres_str) - 2);
 
-						echo '<div class="anime-image"><img src="' . $anime['cover_image'] . '"></div>';
-						echo '<div class="anime-info">';
-						echo '<div class="anime-name">' . $anime['title'] . '</div>';
+						$episodes_dld = sizeof(scandir(ANIME_ROOT . '/' . $file)) - 2;
+
+						echo "<div class='anime-image'><img src='$cover_image'></div>";
+						echo "<div class='anime-info'>";
+						echo "<div class='anime-name'>$title</div>";
+						echo "<br>$genres_str<br><br>$episodes_dld/$episodes EPs (${hours}h:${mins_str}m)<br>$age_rating / $status<br>";
 
 						echo('</div></div>');
 					}
@@ -88,7 +104,7 @@
 		
 		<footer class="footer">
 			<div class="container text-muted">
-				some stuff goes here
+				Tenori Taiga, copyright lololololololol
 			</div>
 		</footer>
 		

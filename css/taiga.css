@@ -34,8 +34,8 @@ footer {
 
 .anime-image img {
 	width: 100%;
-	filter: contrast(50%);
-	-webkit-filter: contrast(50%);
+	filter: contrast(40%);
+	-webkit-filter: contrast(40%);
 }
 
 .anime-info {
@@ -43,11 +43,12 @@ footer {
 	z-index: 1;
 	width: calc(100% - 18px);
 	margin: -351px 0px 0px 10px;
+	color: #FFFFFF;
+	text-shadow: 1px 1px black;
 }
 
 .anime-name {
 	font-size: 20px;
-	color: #FFFFFF;
 	text-shadow: 1px 2px black;
 }
 
