@@ -17,9 +17,32 @@ a, a:hover, a:focus {
 	text-shadow: none;
 }
 
+#search-bar-container {
+	display: inline-block;
+	margin-left: 185px;
+}
+
+#search-bar {
+	width: 800px;
+	height: 46px;
+	margin-top: 7px;
+	border: none;
+	border-radius: 6px;
+	background-color: rgba(255, 255, 255, 0.2);
+	padding-left: 10px;
+	font-size: 20px;
+}
+
+.search-icon {
+	display: inline-block;
+	margin-left: -33px;
+	font-size: 20px;
+}
+
 .page-contents {
 	margin-top: 80px;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 .anime-box {

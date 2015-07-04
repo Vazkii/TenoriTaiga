@@ -31,6 +31,10 @@
 				<?php echo TITLE ?>
 			  </a>
 			</div>
+			<div id="search-bar-container">
+				<input id="search-bar" type="text"></input>
+				<div class="search-icon">&#128270</div>
+			</div>
 		  </div>
 		</div>
 		
@@ -50,9 +54,6 @@
 						$info = get_anime_info($file, true, $id);
 					} else $info = get_anime_info($file, false);
 					if($info !== null) {
-						echo '<div class="anime-box">';
-						echo('<div class="anime-play-button"><a href="javascript:void(0)" class="btn btn-material-deep-orange-500 btn-fab btn-raised mdi-av-play-arrow"></a></div>');
-
 						$anime = $use_id ? $info : $info[0];
 
 						$cover_image = $anime['cover_image'];
@@ -79,7 +80,10 @@
 						$genres_str = substr($genres_str, 0, strlen($genres_str) - 2);
 
 						$episodes_dld = sizeof(scandir($path)) - ($use_id ? 3 : 2);
+						$title_lc = strtolower($title);
 
+						echo "<div class='anime-box' data-anime-name='$title_lc'>";
+						echo("<div class='anime-play-button'><a href='javascript:void(0)' class='btn btn-material-" . BUTTON_COLOR . " btn-fab btn-raised mdi-av-play-arrow'></a></div>");
 						echo "<div class='anime-image'><img src='$cover_image'></div>";
 						echo "<div class='anime-info'>";
 						echo "<div class='anime-name'>$title</div>";
