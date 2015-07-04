@@ -65,6 +65,7 @@
 						$hb_id = $anime['id'];
 						$mal_id = $anime['mal_id'];
 						$genres = $anime['genres'];
+						$rating = round($anime['community_rating'], 2);
 
 						$hours = (int) ($full_length / 60);
 						$mins = $full_length % 60;
@@ -82,7 +83,7 @@
 						echo "<div class='anime-image'><img src='$cover_image'></div>";
 						echo "<div class='anime-info'>";
 						echo "<div class='anime-name'>$title</div>";
-						echo "<a href='https://hummingbird.me/anime/$hb_id'>Hummingbird</a> | <a href='http://myanimelist.net/anime/$mal_id'>MyAnimeList</a><br><br>$genres_str<br><br>$episodes_dld/$episodes EPs (${hours}h:${mins_str}m)<br>$age_rating / $status";
+						echo "<a href='https://hummingbird.me/anime/$hb_id'><img src='https://hummingbird.me/favicon.ico'></img></a> <a href='http://myanimelist.net/anime/$mal_id'><img src='http://myanimelist.net/favicon.ico'></img></a> $rating&#9733<br><br>$genres_str<br><br>$episodes_dld/$episodes EPs (${hours}h:${mins_str}m)<br>$age_rating / $status";
 
 						echo('</div></div>');
 					}
