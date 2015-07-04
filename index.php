@@ -41,12 +41,19 @@
 					if(strlen(str_replace('.', '', $file)) == 0)
 						continue;
 
-					$info = get_anime_info($file);
+					$path = ANIME_ROOT . '/' . $file;
+					$use_id = false;
+					$id = '';
+					if(file_exists($path . '/id')) {
+						$use_id = true;
+						$id = file_get_contents($path . '/id');
+						$info = get_anime_info($file, true, $id);
+					} else $info = get_anime_info($file, false);
 					if($info !== null) {
 						echo '<div class="anime-box">';
 						echo('<div class="anime-play-button"><a href="javascript:void(0)" class="btn btn-material-deep-orange-500 btn-fab btn-raised mdi-av-play-arrow"></a></div>');
 
-						$anime = $info[0];
+						$anime = $use_id ? $info : $info[0];
 
 						$cover_image = $anime['cover_image'];
 						$title = $anime['title'];
@@ -55,34 +62,37 @@
 						$episodes = $anime['episode_count'];
 						$ep_length = $anime['episode_length'];
 						$full_length = $episodes * $ep_length;
+						$hb_id = $anime['id'];
+						$mal_id = $anime['mal_id'];
+						$genres = $anime['genres'];
+
 						$hours = (int) ($full_length / 60);
 						$mins = $full_length % 60;
 						$mins_str = "$mins";
 						if(strlen($mins_str) < 2)
 							$mins_str = "0$mins_str";
 
-						$genres = $anime['genres'];
 						$genres_str = '';
 						foreach($genres as $genre)
 							$genres_str .= $genre['name'] . ', ';
 						$genres_str = substr($genres_str, 0, strlen($genres_str) - 2);
 
-						$episodes_dld = sizeof(scandir(ANIME_ROOT . '/' . $file)) - 2;
+						$episodes_dld = sizeof(scandir($path)) - ($use_id ? 3 : 2);
 
 						echo "<div class='anime-image'><img src='$cover_image'></div>";
 						echo "<div class='anime-info'>";
 						echo "<div class='anime-name'>$title</div>";
-						echo "<br>$genres_str<br><br>$episodes_dld/$episodes EPs (${hours}h:${mins_str}m)<br>$age_rating / $status<br>";
+						echo "<a href='https://hummingbird.me/anime/$hb_id'>Hummingbird</a> | <a href='http://myanimelist.net/anime/$mal_id'>MyAnimeList</a><br><br>$genres_str<br><br>$episodes_dld/$episodes EPs (${hours}h:${mins_str}m)<br>$age_rating / $status";
 
 						echo('</div></div>');
 					}
 				}
 
-				function get_anime_info($anime_name) {
+				function get_anime_info($anime_name, $use_id, $id='') {
 					if(USE_CACHE && has_cache_for($anime_name))
 						$contents = file_get_contents(get_cache_file($anime_name));
 					else {
-						$api = 'http://hummingbird.me/api/v1/search/anime/?query=' . urlencode($anime_name);
+						$api = 'http://hummingbird.me/api/v1/' . ($use_id ? "/anime/$id"  : ('search/anime/?query=' . urlencode($anime_name)));
 						$contents = file_get_contents($api);
 						if(USE_CACHE)
 							file_put_contents(get_cache_file($anime_name), $contents);
@@ -104,7 +114,8 @@
 		
 		<footer class="footer">
 			<div class="container text-muted">
-				Tenori Taiga, copyright lololololololol
+				Tenori Taiga, copyright lololololololol. [<a href="https://github.com/Vazkii/TenoriTaiga">Source Code</a>]
+				<!-- Do not remove the previous line -->
 			</div>
 		</footer>
 		
